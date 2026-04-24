@@ -1,21 +1,47 @@
-const EXPERIENCE = [
+'use client';
+
+import { useState } from 'react';
+import ExperienceModal from './ExperienceModal';
+
+interface HighlightImage {
+  src: string;
+  caption: string;
+}
+
+interface ExperienceItem {
+  period: string;
+  title: string;
+  org: string;
+  sub?: string;
+  highlights?: HighlightImage[];
+}
+
+const EXPERIENCE: ExperienceItem[] = [
   {
     period: 'February 2026 – March 2026',
     title: 'Research Assistant I',
     org: 'Central Luzon State University - DOST-PCAARRD',
     sub: 'R&D Program for Sustainable and Competitive Philippines Onion Industry',
+    highlights: [
+      // Example placeholders
+      // { src: '/assets/experience/onion-field-1.jpg', caption: 'Field monitoring of onion crops.' },
+    ],
   },
   {
     period: 'September 2023 – January 2026',
     title: 'Project Technical',
     org: 'Central Luzon State University - DOST-PCAARRD',
     sub: 'Smart Indoor-Farming for High-Value Crops',
+    highlights: [
+      // { src: '/assets/experience/smart-farm-1.jpg', caption: 'Working on the ESP32 sensor integration.' },
+    ],
   },
   {
     period: '2020 – 2021',
     title: 'Staff',
     org: 'Center for Diabetes Care',
     sub: '',
+    highlights: [],
   },
 ];
 
@@ -39,6 +65,8 @@ const EDUCATION = [
 ];
 
 export default function Timeline() {
+  const [activeExp, setActiveExp] = useState<ExperienceItem | null>(null);
+
   return (
     <>
       <section className="section reveal" id="experience">
@@ -47,7 +75,12 @@ export default function Timeline() {
           {EXPERIENCE.map((item, i) => (
             <div className="timeline-item" key={i}>
               <div className="tl-dot" />
-              <div className="tl-content">
+              <div 
+                className={`tl-content ${item.highlights ? 'tl-content--interactive' : ''}`}
+                onClick={() => { if (item.highlights) setActiveExp(item); }}
+                role={item.highlights ? 'button' : undefined}
+                tabIndex={item.highlights ? 0 : undefined}
+              >
                 <div className="tl-meta">
                   <span className="tl-year">{item.period}</span>
                   <span className="tl-badge tl-badge--work">Work</span>
@@ -55,6 +88,12 @@ export default function Timeline() {
                 <h3 className="tl-title">{item.title}</h3>
                 <p className="tl-sub">{item.org}</p>
                 {item.sub && <p className="tl-sub">{item.sub}</p>}
+                
+                {item.highlights && (
+                  <button className="tl-view-btn">
+                    View Highlights ›
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -79,6 +118,14 @@ export default function Timeline() {
           ))}
         </div>
       </section>
+
+      <ExperienceModal 
+        isOpen={!!activeExp}
+        onClose={() => setActiveExp(null)}
+        title={activeExp?.title || ''}
+        org={activeExp?.org || ''}
+        images={activeExp?.highlights || []}
+      />
     </>
   );
 }

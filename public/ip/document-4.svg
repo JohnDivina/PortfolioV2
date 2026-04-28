@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">IP document placeholder 4</title>
+  <desc id="desc">A clean placeholder for an additional IP or copyright document.</desc>
+  <rect width="900" height="1200" fill="#f7f6f3"/>
+  <rect x="90" y="90" width="720" height="1020" rx="18" fill="#ffffff" stroke="#d8e7dd" stroke-width="5"/>
+  <rect x="190" y="190" width="520" height="70" rx="20" fill="#e6f4ec"/>
+  <rect x="185" y="360" width="530" height="24" rx="12" fill="#2d6a4f" opacity="0.85"/>
+  <rect x="185" y="455" width="530" height="20" rx="10" fill="#cfd8d2"/>
+  <rect x="185" y="510" width="460" height="20" rx="10" fill="#cfd8d2"/>
+  <rect x="185" y="650" width="230" height="150" rx="16" fill="#e6f4ec"/>
+  <rect x="485" y="650" width="230" height="150" rx="16" fill="#e6f4ec"/>
+  <text x="450" y="980" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#2d6a4f">IP Document Slot 4</text>
+</svg>

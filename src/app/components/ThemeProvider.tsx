@@ -13,19 +13,21 @@ interface ThemeCtx {
 const ThemeContext = createContext<ThemeCtx>({ theme: 'light', setTheme: () => {} });
 export const useTheme = () => useContext(ThemeContext);
 
+const getStoredTheme = (): Theme => {
+  if (typeof window === 'undefined') return 'light';
+  return (localStorage.getItem(STORAGE_KEY) as Theme) || 'light';
+};
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>(getStoredTheme);
 
   useEffect(() => {
-    const saved = (localStorage.getItem(STORAGE_KEY) as Theme) || 'light';
-    setThemeState(saved);
-    document.documentElement.setAttribute('data-theme', saved);
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+  }, [theme]);
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
-    document.documentElement.setAttribute('data-theme', t);
-    localStorage.setItem(STORAGE_KEY, t);
   };
 
   return (

@@ -8,6 +8,10 @@ const STACK = [
     tags: ['PHP','MySQL','HTML','CSS','JavaScript','C++','XAMPP'],
   },
   {
+    label: 'AI & Integration',
+    tags: ['AI Chatbot Development','Prompt Engineering','API Integration'],
+  },
+  {
     label: 'Tools & Platforms',
     tags: ['Git','GitHub','Vercel','React Native','Tailwind','Expo','AWS Lambda','AWS S3'],
   },

@@ -2,19 +2,26 @@
 
 import { useState } from 'react';
 import ExperienceModal from './ExperienceModal';
-
-interface HighlightImage {
-  src: string;
-  caption: string;
-}
+import type { CarouselImage } from './ImageCarousel';
 
 interface ExperienceItem {
   period: string;
   title: string;
   org: string;
   sub?: string;
-  highlights?: HighlightImage[];
+  highlights?: CarouselImage[];
 }
+
+const projectTechnicalImages: CarouselImage[] = [
+  { src: '/experience/_placeholder/exp1.png', alt: 'Project Technical greenhouse monitoring setup', caption: 'Greenhouse monitoring setup and project field work' },
+  { src: '/experience/_placeholder/exp2.png', alt: 'Project Technical smart indoor farming dashboard', caption: 'Smart indoor farming system interface and monitoring' },
+  { src: '/experience/_placeholder/exp3.jpg', alt: 'Project Technical sensor and equipment documentation', caption: 'Sensor, equipment, and implementation documentation' },
+  { src: '/experience/_placeholder/exp4.JPG', alt: 'Project Technical greenhouse equipment installation', caption: 'Greenhouse equipment installation and validation' },
+  { src: '/experience/_placeholder/exp5.jpg', alt: 'Project Technical crop monitoring activity', caption: 'Crop monitoring and project activity documentation' },
+  { src: '/experience/_placeholder/exp6.jpg', alt: 'Project Technical system testing activity', caption: 'System testing and technical support work' },
+  { src: '/experience/_placeholder/exp7.jpg', alt: 'Project Technical project presentation material', caption: 'Project presentation and reporting material' },
+  { src: '/experience/_placeholder/exp8.jpg', alt: 'Project Technical team and field documentation', caption: 'Team coordination and field documentation' },
+];
 
 const EXPERIENCE: ExperienceItem[] = [
   {
@@ -22,26 +29,19 @@ const EXPERIENCE: ExperienceItem[] = [
     title: 'Research Assistant I',
     org: 'Central Luzon State University - DOST-PCAARRD',
     sub: 'R&D Program for Sustainable and Competitive Philippines Onion Industry',
-    highlights: [
-      // Example placeholders
-      // { src: '/assets/experience/onion-field-1.jpg', caption: 'Field monitoring of onion crops.' },
-    ],
   },
   {
     period: 'September 2023 – January 2026',
     title: 'Project Technical',
     org: 'Central Luzon State University - DOST-PCAARRD',
     sub: 'Smart Indoor-Farming for High-Value Crops',
-    highlights: [
-      // { src: '/assets/experience/smart-farm-1.jpg', caption: 'Working on the ESP32 sensor integration.' },
-    ],
+    highlights: projectTechnicalImages,
   },
   {
     period: '2020 – 2021',
     title: 'Staff',
     org: 'Center for Diabetes Care',
     sub: '',
-    highlights: [],
   },
 ];
 
@@ -76,10 +76,10 @@ export default function Timeline() {
             <div className="timeline-item" key={i}>
               <div className="tl-dot" />
               <div 
-                className={`tl-content ${item.highlights ? 'tl-content--interactive' : ''}`}
-                onClick={() => { if (item.highlights) setActiveExp(item); }}
-                role={item.highlights ? 'button' : undefined}
-                tabIndex={item.highlights ? 0 : undefined}
+                className={`tl-content ${item.highlights?.length ? 'tl-content--interactive' : ''}`}
+                onClick={() => { if (item.highlights?.length) setActiveExp(item); }}
+                role={item.highlights?.length ? 'button' : undefined}
+                tabIndex={item.highlights?.length ? 0 : undefined}
               >
                 <div className="tl-meta">
                   <span className="tl-year">{item.period}</span>
@@ -89,11 +89,11 @@ export default function Timeline() {
                 <p className="tl-sub">{item.org}</p>
                 {item.sub && <p className="tl-sub">{item.sub}</p>}
                 
-                {item.highlights && (
+                {item.highlights?.length ? (
                   <button className="tl-view-btn">
                     View Highlights ›
                   </button>
-                )}
+                ) : null}
               </div>
             </div>
           ))}

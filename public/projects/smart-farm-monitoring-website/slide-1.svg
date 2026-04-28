@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Project overview placeholder</title>
+  <desc id="desc">A clean portfolio placeholder for a project overview screenshot.</desc>
+  <rect width="1200" height="750" fill="#f7f6f3"/>
+  <rect x="90" y="80" width="1020" height="590" rx="24" fill="#ffffff" stroke="#d8e7dd" stroke-width="4"/>
+  <rect x="140" y="132" width="330" height="34" rx="17" fill="#d9f0e4"/>
+  <rect x="140" y="198" width="620" height="28" rx="14" fill="#2d6a4f" opacity="0.85"/>
+  <rect x="140" y="254" width="920" height="18" rx="9" fill="#cfd8d2"/>
+  <rect x="140" y="296" width="800" height="18" rx="9" fill="#cfd8d2"/>
+  <rect x="140" y="376" width="270" height="178" rx="18" fill="#e6f4ec"/>
+  <rect x="465" y="376" width="270" height="178" rx="18" fill="#e6f4ec"/>
+  <rect x="790" y="376" width="270" height="178" rx="18" fill="#e6f4ec"/>
+  <text x="600" y="632" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#2d6a4f">Project Image Slot 1</text>
+</svg>

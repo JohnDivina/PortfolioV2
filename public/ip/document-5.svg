@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">IP document placeholder 5</title>
+  <desc id="desc">A clean placeholder for an additional IP or copyright document.</desc>
+  <rect width="900" height="1200" fill="#f7f6f3"/>
+  <rect x="90" y="90" width="720" height="1020" rx="18" fill="#ffffff" stroke="#d8e7dd" stroke-width="5"/>
+  <path d="M450 175L510 300L648 320L548 418L572 555L450 490L328 555L352 418L252 320L390 300Z" fill="#e6f4ec" stroke="#2d6a4f" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="185" y="650" width="530" height="20" rx="10" fill="#cfd8d2"/>
+  <rect x="185" y="705" width="530" height="20" rx="10" fill="#cfd8d2"/>
+  <rect x="185" y="760" width="430" height="20" rx="10" fill="#cfd8d2"/>
+  <text x="450" y="980" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#2d6a4f">IP Document Slot 5</text>
+</svg>

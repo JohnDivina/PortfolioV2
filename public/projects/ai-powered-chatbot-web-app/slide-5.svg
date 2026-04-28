@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Project documentation placeholder</title>
+  <desc id="desc">A clean portfolio placeholder for documentation and presentation images.</desc>
+  <rect width="1200" height="750" fill="#f7f6f3"/>
+  <rect x="90" y="80" width="1020" height="590" rx="24" fill="#ffffff" stroke="#d8e7dd" stroke-width="4"/>
+  <rect x="190" y="145" width="350" height="410" rx="18" fill="#f3faf6" stroke="#d8e7dd" stroke-width="4"/>
+  <rect x="660" y="145" width="350" height="410" rx="18" fill="#f3faf6" stroke="#d8e7dd" stroke-width="4"/>
+  <rect x="235" y="205" width="260" height="22" rx="11" fill="#2d6a4f" opacity="0.85"/>
+  <rect x="235" y="270" width="250" height="16" rx="8" fill="#cfd8d2"/>
+  <rect x="235" y="310" width="210" height="16" rx="8" fill="#cfd8d2"/>
+  <rect x="705" y="205" width="260" height="22" rx="11" fill="#2d6a4f" opacity="0.85"/>
+  <rect x="705" y="270" width="250" height="16" rx="8" fill="#cfd8d2"/>
+  <rect x="705" y="310" width="210" height="16" rx="8" fill="#cfd8d2"/>
+  <text x="600" y="632" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#2d6a4f">Project Image Slot 5</text>
+</svg>

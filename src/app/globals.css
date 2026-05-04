@@ -2809,3 +2809,148 @@ html.to-light::view-transition-new(root) {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+══════════════════════════════════════════════════════ */
+
+/* ── Tablet (max-width: 1024px) ── */
+@media (max-width: 1024px) {
+  /* Collapse main 2-column layout to 1 column */
+  .main-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  /* Make sure projects grid is still 2 columns if space allows */
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* ── Mobile (max-width: 768px) ── */
+@media (max-width: 768px) {
+  /* Topbar / Nav */
+  .topbar__inner {
+    padding: 0 16px;
+    gap: 16px;
+  }
+  
+  .topbar__brand {
+    font-size: 1rem;
+  }
+  
+  .topbar__links {
+    gap: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .topbar__links::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .status-widget {
+    display: none; /* Hide status widget on small screens entirely to save space */
+  }
+
+  .page-wrapper {
+    padding: 58px 16px 0;
+  }
+
+  /* Hero Section */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0 32px;
+    gap: 24px;
+  }
+
+  .hero__name-row {
+    justify-content: center;
+  }
+
+  .hero__name {
+    font-size: 1.75rem;
+  }
+
+  .hero__location {
+    justify-content: center;
+  }
+
+  .hero__roles {
+    justify-content: center;
+  }
+
+  .hero__cta {
+    justify-content: center;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card::before {
+    height: 50px; /* Always show gradient top on mobile */
+  }
+
+  .project-card__cta {
+    opacity: 1; /* Always show CTA text on mobile */
+    transform: translateY(0);
+  }
+
+  /* Timeline */
+  .timeline::before {
+    left: 12px;
+  }
+
+  .tl-dot {
+    left: 12px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .tl-content {
+    margin-left: 36px;
+    padding: 16px;
+  }
+
+  /* General Spacing */
+  .section {
+    margin-bottom: 48px;
+  }
+  
+  .about__body {
+    padding: 20px 16px;
+  }
+  
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* ── Small Mobile (max-width: 480px) ── */
+@media (max-width: 480px) {
+  .hero__photo {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .hero__name {
+    font-size: 1.5rem;
+  }
+  
+  .role-chip {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+  }
+}

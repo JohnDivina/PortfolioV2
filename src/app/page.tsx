@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Nav           from './components/Nav';
 import Hero          from './components/Hero';
 import About         from './components/About';
@@ -12,12 +12,28 @@ import IPCarousel    from './components/IPCarousel';
 import Footer        from './components/Footer';
 import PlantOverlay  from './components/PlantOverlay';
 import CatCharacter  from './components/CatCharacter';
+import EntranceAnimation from './components/EntranceAnimation';
 
 export default function HomePage() {
   const progressRef = useRef<HTMLDivElement>(null);
+  const [showContent, setShowContent] = useState(false);
 
-  /* Scroll reveal via IntersectionObserver */
+  /* Listen for entrance animation completion */
   useEffect(() => {
+    const handleEntrance = () => {
+      setShowContent(true);
+      // We wait a tiny bit after mounting the content to initialize observers,
+      // otherwise elements might not be in the DOM yet
+      setTimeout(initObservers, 50);
+    };
+    
+    window.addEventListener('entranceComplete', handleEntrance);
+    return () => window.removeEventListener('entranceComplete', handleEntrance);
+  }, []);
+
+  /* Move intersection observers into a function we can call after animation */
+  const initObservers = () => {
+    // Scroll reveal via IntersectionObserver
     const els = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => {
@@ -26,23 +42,11 @@ export default function HomePage() {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
     els.forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
 
-  /* Topbar shadow on scroll */
-  useEffect(() => {
-    const onScroll = () => {
-      document.getElementById('topbar')?.classList.toggle('topbar--scrolled', window.scrollY > 20);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  /* Active nav highlight on scroll */
-  useEffect(() => {
+    // Active nav highlight on scroll
     const links    = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
-    const obs = new IntersectionObserver(
+    const navObs = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
           const id = e.target.getAttribute('id');
@@ -51,8 +55,16 @@ export default function HomePage() {
       }),
       { threshold: 0.4 }
     );
-    sections.forEach(s => obs.observe(s));
-    return () => obs.disconnect();
+    sections.forEach(s => navObs.observe(s));
+  };
+
+  /* Topbar shadow on scroll */
+  useEffect(() => {
+    const onScroll = () => {
+      document.getElementById('topbar')?.classList.toggle('topbar--scrolled', window.scrollY > 20);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   /* Scroll progress bar */
@@ -66,32 +78,39 @@ export default function HomePage() {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [showContent]);
 
   return (
     <>
-      <div ref={progressRef} className="scroll-progress" aria-hidden="true" />
-      <PlantOverlay />
-      <CatCharacter />
-      <Nav />
-      <div className="page-wrapper">
-        <Hero />
-        <About />
-        <div className="main-grid">
-          {/* Left column */}
-          <div className="col-left">
-            <TechStack />
-            <Projects />
-          </div>
-          {/* Right column */}
-          <div className="col-right">
-            <Timeline />
-            <Certifications />
-            <IPCarousel />
+      <EntranceAnimation />
+      
+      {showContent && (
+        <div className="content-fade-in">
+          <div ref={progressRef} className="scroll-progress" aria-hidden="true" />
+          <PlantOverlay />
+          <CatCharacter />
+          <Nav />
+          <div className="page-wrapper">
+            <Hero />
+            <About />
+            <div className="main-grid">
+              {/* Left column */}
+              <div className="col-left">
+                <TechStack />
+                <Projects />
+              </div>
+              {/* Right column */}
+              <div className="col-right">
+                <Timeline />
+                <Certifications />
+                <IPCarousel />
+              </div>
+            </div>
+            <Footer />
           </div>
         </div>
-        <Footer />
-      </div>
+      )}
     </>
   );
 }
+

@@ -1,17 +1,57 @@
+'use client';
+
 import Image from 'next/image';
+import { useState, useRef, useEffect } from 'react';
 
 export default function Hero() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Initialize audio only on client side to avoid SSR issues
+    audioRef.current = new Audio('/bgmusic.mp3');
+    audioRef.current.loop = true;
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((e) => {
+        console.error("Audio playback failed:", e);
+      });
+    }
+  };
+
   return (
     <section className="hero" id="home">
-      <div className="hero__photo-ring">
-        <Image
-          src="/assets/profile.jpg"
-          alt="John Rey L. Divina"
-          width={130}
-          height={130}
-          className="hero__photo"
-          priority
-        />
+      <div className={`hero__photo-ring ${isPlaying ? 'is-playing' : ''}`}>
+        <button 
+          className="hero__audio-btn" 
+          onClick={togglePlay}
+          aria-label={isPlaying ? "Pause music" : "Play music"}
+        >
+          <Image
+            src="/assets/profile.jpg"
+            alt="John Rey L. Divina"
+            width={130}
+            height={130}
+            className="hero__photo"
+            priority
+          />
+        </button>
       </div>
       <div className="hero__content">
         <div className="hero__name-row">

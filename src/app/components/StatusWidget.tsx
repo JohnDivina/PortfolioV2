@@ -32,12 +32,12 @@ export default function StatusWidget() {
   useEffect(() => {
     const tick = () => {
       setTime(
-        new Date().toLocaleTimeString('en-PH', {
+        new Date().toLocaleTimeString('en-US', {
           timeZone: 'Asia/Manila',
-          hour: '2-digit',
+          hour: 'numeric',
           minute: '2-digit',
           second: '2-digit',
-          hour12: false,
+          hour12: true,
         })
       );
     };

@@ -40,3 +40,8 @@ dev-server.*.log
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent & docs (local only)
+AGENTS.md
+CLAUDE.md
+README.md

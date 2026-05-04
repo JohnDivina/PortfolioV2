@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Nav           from './components/Nav';
 import Hero          from './components/Hero';
 import About         from './components/About';
@@ -14,6 +14,8 @@ import PlantOverlay  from './components/PlantOverlay';
 import CatCharacter  from './components/CatCharacter';
 
 export default function HomePage() {
+  const progressRef = useRef<HTMLDivElement>(null);
+
   /* Scroll reveal via IntersectionObserver */
   useEffect(() => {
     const els = document.querySelectorAll('.reveal');
@@ -53,8 +55,22 @@ export default function HomePage() {
     return () => obs.disconnect();
   }, []);
 
+  /* Scroll progress bar */
+  useEffect(() => {
+    const bar = progressRef.current;
+    if (!bar) return;
+    const onScroll = () => {
+      const scrolled = window.scrollY;
+      const total    = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = total > 0 ? `${(scrolled / total) * 100}%` : '0%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
+      <div ref={progressRef} className="scroll-progress" aria-hidden="true" />
       <PlantOverlay />
       <CatCharacter />
       <Nav />

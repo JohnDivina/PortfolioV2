@@ -10,8 +10,6 @@ import Timeline      from './components/Timeline';
 import Certifications from './components/Certifications';
 import IPCarousel    from './components/IPCarousel';
 import Footer        from './components/Footer';
-import PlantOverlay  from './components/PlantOverlay';
-import CatCharacter  from './components/CatCharacter';
 import EntranceAnimation from './components/EntranceAnimation';
 
 export default function HomePage() {
@@ -87,8 +85,6 @@ export default function HomePage() {
       {showContent && (
         <div className="content-fade-in">
           <div ref={progressRef} className="scroll-progress" aria-hidden="true" />
-          <PlantOverlay />
-          <CatCharacter />
           <Nav />
           <div className="page-wrapper">
             <Hero />

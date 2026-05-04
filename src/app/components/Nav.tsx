@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from './ThemeProvider';
+import StatusWidget from './StatusWidget';
 
 const SunIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -52,6 +53,7 @@ export default function Nav() {
             </a>
           ))}
         </div>
+        <StatusWidget />
         <div className="theme-switcher" role="group" aria-label="Theme selection">
           {themes.map(t => (
             <button

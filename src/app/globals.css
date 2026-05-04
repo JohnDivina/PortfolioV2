@@ -2599,3 +2599,79 @@ strong {
 .cert-item:nth-child(1) .cert-dot { transition-delay: 0s; }
 .cert-item:nth-child(2) .cert-dot { transition-delay: 0.04s; }
 .cert-item:nth-child(3) .cert-dot { transition-delay: 0.08s; }
+
+/* ══════════════════════════════════════════════════════
+   STATUS WIDGET (Clock, Weather, Ping)
+══════════════════════════════════════════════════════ */
+
+.status-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto; /* push to right side of nav area */
+  margin-right: 12px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: default;
+}
+
+.status-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.status-pill__icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.status-pill__text {
+  letter-spacing: 0.01em;
+}
+
+/* Ping dot status colors */
+.status-pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+}
+
+.status-pill--good .status-pill__dot {
+  background-color: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.status-pill--ok .status-pill__dot {
+  background-color: #eab308;
+  box-shadow: 0 0 8px #eab308;
+}
+
+.status-pill--bad .status-pill__dot {
+  background-color: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+/* Hide widget parts on smaller screens to prevent nav crowding */
+@media (max-width: 900px) {
+  .status-widget {
+    display: none;
+  }
+}

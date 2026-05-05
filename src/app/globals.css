@@ -2879,6 +2879,10 @@ html.to-light::view-transition-new(root) {
     gap: 24px;
   }
 
+  .hero__photo-ring, .hero__audio-btn {
+    margin: 0 auto;
+  }
+
   .hero__name-row {
     justify-content: center;
   }

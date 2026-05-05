@@ -629,6 +629,10 @@ strong {
   align-items: start;
 }
 
+.col-left, .col-right {
+  min-width: 0; /* CRITICAL: Prevents grid blow-out from carousels */
+}
+
 /* ══ TECH STACK ══════════════════════════════ */
 .stack-grid {
   display: flex;
